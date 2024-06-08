@@ -1,3 +1,8 @@
+import { Register } from "../pageComponents/auth";
 export const AuthPage = () => {
-  return <div>AuthPage</div>;
+  return (
+    <div>
+      <Register />
+    </div>
+  );
 };
