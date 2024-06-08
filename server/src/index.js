@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import { userRouter } from "./routes/users.js";
 
 dotenv.config();
 const app = express();
@@ -9,8 +10,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use("/auth", userRouter);
+
 mongoose.connect(
-  `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@recipe.ehsagpg.mongodb.net/?retryWrites=true&w=majority&appName=recipe`
+  `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@recipe.ehsagpg.mongodb.net/recipe?retryWrites=true&w=majority&appName=recipe`
 );
 
 const port = 3001;
