@@ -23,6 +23,22 @@ router.post("/register", async (req, res) => {
   res.json({ message: "User successfully registered." });
 });
 
-router.post("/login");
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  const user = await UserModel.findOne({
+    username,
+  });
+  if (!user) {
+    return res.json({ message: "User does not exist." });
+  }
+
+  const passwordMatch = await bcrypt.compare(password, user.password);
+  if (!passwordMatch) {
+    return res.json({ message: "Invalid username or password." });
+  }
+
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+  res.json({ token, userID: user._id });
+});
 
 export { router as userRouter };
