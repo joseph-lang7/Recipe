@@ -1,4 +1,4 @@
-import { FormGroup } from "../form-group/form-group";
+import { FormGroup } from "../../form-group/form-group";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useCookies } from "react-cookie";

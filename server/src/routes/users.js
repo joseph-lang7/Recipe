@@ -41,4 +41,14 @@ router.post("/login", async (req, res) => {
   res.json({ token, userID: user._id });
 });
 
+router.get("/users", async (req, res) => {
+  try {
+    const users = await UserModel.find();
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.json({ message: "Internal server error" });
+  }
+});
+
 export { router as userRouter };
