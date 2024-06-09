@@ -29,16 +29,16 @@ router.post("/login", async (req, res) => {
     username,
   });
   if (!user) {
-    return res.json({ message: "User does not exist." });
+    return res.status(401).json({ message: "User does not exist." });
   }
 
   const passwordMatch = await bcrypt.compare(password, user.password);
   if (!passwordMatch) {
-    return res.json({ message: "Invalid username or password." });
+    return res.status(401).json({ message: "Invalid username or password." });
   }
 
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-  res.json({ token, userID: user._id });
+  res.status(200).json({ token, userID: user._id });
 });
 
 router.get("/users", async (req, res) => {

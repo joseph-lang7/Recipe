@@ -18,23 +18,30 @@ export const Navbar = () => {
 
   return (
     <div className="w-full bg-black h-[100px] text-white flex justify-center items-center">
-      <div className="flex max-w-[1500px] w-full justify-between">
-        <ul className="flex gap-2">
+      <div className="flex w-full max-w-[2000px] justify-between px-5 md:px-0 md:justify-around">
+        <div className="flex items-center">Logo</div>
+        <ul className="hidden md:flex gap-7 items-center">
           {navLinks.map((navLink) => (
             <li key={navLink.href}>
               <Link to={navLink.href}>{navLink.title}</Link>
             </li>
           ))}
-          {cookies.access_token ? (
-            <li>
-              <button onClick={logout}>Logout</button>
-            </li>
-          ) : (
-            <li>
-              <Link to="/auth/login">Login</Link>
-            </li>
-          )}
         </ul>
+        {cookies.access_token ? (
+          <button
+            onClick={logout}
+            className="bg-white text-black px-5 py-2 rounded-full hover:bg-blue-500 transition-colors duration-500 hover:text-white"
+          >
+            Logout
+          </button>
+        ) : (
+          <Link
+            className="bg-white text-black px-5 py-2 rounded-full hover:bg-blue-500 transition-colors duration-500 hover:text-white"
+            to="/auth/login"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

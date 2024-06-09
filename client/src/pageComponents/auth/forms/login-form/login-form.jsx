@@ -1,37 +1,32 @@
 import { FormGroup } from "../../form-group/form-group";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { onSubmit } from "./auth-service";
+
 export const LoginForm = () => {
   const navigate = useNavigate();
   const [, setCookies] = useCookies(["access_token"]);
   const form = useForm();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
+  const [invalidCredentials, setInvalidCredentials] = useState(false);
 
-  const onSubmit = async (data) => {
-    try {
-      const { username, password } = data;
-      const res = await axios.post("http://localhost:3001/auth/login", {
-        username,
-        password,
-      });
-      setCookies("access_token", res.data.token);
-      window.localStorage.setItem("userID", res.data.userID);
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-    }
+  const formSubmission = async (data) => {
+    await onSubmit(data, setInvalidCredentials, navigate, setCookies);
   };
   return (
     <div className="flex justify-center items-center px-5">
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(formSubmission)}
         className="flex flex-col gap-5 border shadow-2xl bg-white w-[650px] h-min py-10 px-5 mt-10"
         noValidate
       >
         <h2 className="text-3xl font-bold">Login</h2>
+        {invalidCredentials && (
+          <p className="text-red-500">Incorrect username or password.</p>
+        )}
         <FormGroup
           htmlFor="username"
           title="Username"
