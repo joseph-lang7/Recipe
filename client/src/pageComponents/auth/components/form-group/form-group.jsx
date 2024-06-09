@@ -4,9 +4,9 @@ export const FormGroup = ({
   htmlFor,
   title,
   type,
-  onChange,
-  value,
+  register,
   placeholder,
+  errorMessage,
 }) => {
   return (
     <div className="flex flex-col items-start gap-1 w-full">
@@ -14,12 +14,11 @@ export const FormGroup = ({
       <input
         type={type}
         id={htmlFor}
-        onChange={onChange}
-        value={value}
-        name={htmlFor}
+        {...register}
         className="border pl-3 py-2 rounded-sm w-full focus:outline-none focus:shadow-lg focus:border-blue-500"
         placeholder={placeholder}
       />
+      <p className="text-red-500">{errorMessage}</p>
     </div>
   );
 };
@@ -31,4 +30,6 @@ FormGroup.propTypes = {
   onChange: PropTypes.func,
   value: PropTypes.string,
   placeholder: PropTypes.string,
+  errorMessage: PropTypes.string,
+  register: PropTypes.object,
 };
