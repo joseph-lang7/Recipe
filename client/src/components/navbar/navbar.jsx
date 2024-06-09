@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 export const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [cookies, setCookies] = useCookies(["access_token"]);
   const navLinks = [
     { href: "/", title: "Home" },
@@ -22,7 +23,13 @@ export const Navbar = () => {
         <div className="flex items-center">Logo</div>
         <ul className="hidden md:flex gap-7 items-center">
           {navLinks.map((navLink) => (
-            <li key={navLink.href}>
+            <li
+              key={navLink.href}
+              className={`${
+                location.pathname === navLink.href &&
+                "border-b-2 border-blue-500"
+              } `}
+            >
               <Link to={navLink.href}>{navLink.title}</Link>
             </li>
           ))}
