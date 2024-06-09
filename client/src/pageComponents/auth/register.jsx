@@ -1,7 +1,7 @@
 import { Form } from "./components/form/form";
 import { useState } from "react";
 import axios from "axios";
-export const Register = () => {
+export const RegisterForm = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",

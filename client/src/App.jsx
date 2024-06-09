@@ -2,7 +2,8 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import {
   CreateRecipePage,
-  AuthPage,
+  Register,
+  Login,
   HomePage,
   SavedRecipesPage,
 } from "./pages";
@@ -12,7 +13,8 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/create-recipe" element={<CreateRecipePage />} />
-      <Route path="/auth" element={<AuthPage />} />
+      <Route path="/auth/register" element={<Register />} />
+      <Route path="/auth/login" element={<Login />} />
       <Route path="/saved-recipes" element={<SavedRecipesPage />} />
     </Routes>
   );
