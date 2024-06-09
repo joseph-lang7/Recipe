@@ -9,10 +9,10 @@ export const Form = ({
   label,
 }) => {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center px-5">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-5 border shadow-2xl bg-white w-[650px] h-min py-20 px-20 mt-10"
+        className="flex flex-col gap-5 border shadow-2xl bg-white w-[650px] h-min py-10 px-5 mt-10"
       >
         <h2 className="text-3xl font-bold">{label}</h2>
         <FormGroup
