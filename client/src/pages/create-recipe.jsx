@@ -15,7 +15,7 @@ export const CreateRecipePage = () => {
   const formSubmission = async (data) => {
     try {
       await axios.post("http://localhost:3001/recipes", data);
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
