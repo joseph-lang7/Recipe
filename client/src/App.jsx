@@ -7,15 +7,18 @@ import {
   SavedRecipesPage,
   Register,
 } from "./pages";
+import { ProtectedRoutes } from "./ProtectedRoutes";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/create-recipe" element={<CreateRecipePage />} />
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/create-recipe" element={<CreateRecipePage />} />
+        <Route path="/saved-recipes" element={<SavedRecipesPage />} />
+      </Route>
       <Route path="/auth/register" element={<Register />} />
       <Route path="/auth/login" element={<Login />} />
-      <Route path="/saved-recipes" element={<SavedRecipesPage />} />
     </Routes>
   );
 }
