@@ -4,7 +4,7 @@ export const RecipeCard = ({ recipeImage, recipeName, recipeCookingTime }) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      className="w-[400px] h-auto  border shadow-xl cursor-pointer relative"
+      className="w-[300px] sm:w-[400px] h-auto  border shadow-xl cursor-pointer relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
