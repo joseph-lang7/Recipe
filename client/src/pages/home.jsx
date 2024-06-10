@@ -28,8 +28,9 @@ export const HomePage = () => {
   const filteredRecipes = getFilteredRecipes();
 
   const handleSearchQuery = (event) => {
-    setQuery(event.target.name);
+    setQuery(event.target.value);
   };
+
   return (
     <div className="w-full px-5 py-10 flex flex-col justify-between items-center gap-10">
       <SearchBar handleChange={handleSearchQuery} />
