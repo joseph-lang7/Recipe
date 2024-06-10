@@ -6,8 +6,11 @@ import { SearchBar } from "../pageComponents/home/search-bar/search-bar";
 export const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
   const [query, setQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const getRecipes = async () => {
     const res = await axios.get("http://localhost:3001/recipes");
+    setIsLoading(false);
+
     setRecipes(res.data);
   };
   useEffect(() => {
@@ -25,14 +28,16 @@ export const HomePage = () => {
   const filteredRecipes = getFilteredRecipes();
 
   const handleSearchQuery = (event) => {
-    setQuery(event.target.value);
+    setQuery(event.target.name);
   };
   return (
     <div className="w-full px-5 py-10 flex flex-col justify-between items-center gap-10">
       <SearchBar handleChange={handleSearchQuery} />
       <div className="w-full flex justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 max-w-[2000px] gap-5">
-          {filteredRecipes && filteredRecipes.length > 0 ? (
+          {isLoading ? (
+            <></>
+          ) : filteredRecipes && filteredRecipes.length > 0 ? (
             filteredRecipes.map((recipe) => (
               <RecipeCard
                 key={recipe._id}
