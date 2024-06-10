@@ -3,16 +3,19 @@ import { FormGroup } from "../components/form-group/form-group";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useGetUserId } from "../hooks/useGetUserId";
+import { useNavigate } from "react-router-dom";
+
 export const CreateRecipePage = () => {
+  const navigate = useNavigate();
   const userID = useGetUserId();
   const form = useForm();
-  const { register, handleSubmit, formState, reset } = form;
+  const { register, handleSubmit, formState } = form;
   const { errors } = formState;
 
   const formSubmission = async (data) => {
     try {
       await axios.post("http://localhost:3001/recipes", data);
-      reset();
+      navigate("/home");
     } catch (error) {
       console.error(error);
     }
