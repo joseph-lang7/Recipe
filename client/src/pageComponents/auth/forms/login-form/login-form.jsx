@@ -1,4 +1,4 @@
-import { FormGroup } from "../../form-group/form-group";
+import { FormGroup } from "../../../../components/form-group/form-group";
 import { useForm } from "react-hook-form";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";

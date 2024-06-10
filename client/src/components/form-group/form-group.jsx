@@ -9,7 +9,7 @@ export const FormGroup = ({
   errorMessage,
 }) => {
   return (
-    <div className="flex flex-col items-start gap-1 w-full">
+    <div className="flex flex-col items-start gap-1 w-full ">
       <label htmlFor={htmlFor}>{title}</label>
       <input
         type={type}
