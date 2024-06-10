@@ -146,7 +146,7 @@ export const CreateRecipePage = () => {
           placeholder="Cooking time"
           errorMessage={errors.cookingTime?.message}
         />
-        <div className="hidden">
+        <div className="hidden" aria-hidden="true">
           <label htmlFor="recipeOwner"></label>
           <input
             type="text"
