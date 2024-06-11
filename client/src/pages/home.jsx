@@ -99,6 +99,7 @@ export const HomePage = () => {
                 icons={true}
                 userId={userID}
                 recipeId={recipe._id}
+                homeCard={true}
               />
             ))
           ) : (

@@ -2,6 +2,9 @@ import PropTypes from "prop-types";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { IoIosArrowRoundForward } from "react-icons/io";
+
 export const RecipeCard = ({
   recipeImage,
   recipeName,
@@ -12,14 +15,17 @@ export const RecipeCard = ({
   icons,
   userId,
   recipeId,
+  homeCard,
 }) => {
   const navigate = useNavigate();
   const handleClick = async (recipeId) => {
     navigate(`recipes/${recipeId}`);
   };
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      onClick={() => handleClick(recipeId)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       className="w-full h-auto  border shadow-xl cursor-pointer relative hover:shadow-2xl hover:scale-105 transition-all duration-500 "
     >
       <div className="w-full h-[300px]">
@@ -28,8 +34,23 @@ export const RecipeCard = ({
           className="object-cover h-full "
         />
       </div>
-      <div className="flex px-5 py-5 items-center justify-between">
-        <div className="flex flex-col">
+      <div className="flex items-center justify-between relative">
+        {homeCard && (
+          <button
+            onClick={() => handleClick(recipeId)}
+            className={`${
+              isHovered
+                ? "opacity-100 translate-y-2"
+                : "opacity-0 translate-y-[-10px]"
+            } absolute top-0 w-full flex justify-center hover:text-blue-500 transition-all duration-500 items-center`}
+          >
+            <p> Learn More</p>
+            <div className="text-2xl">
+              <IoIosArrowRoundForward />
+            </div>
+          </button>
+        )}
+        <div className="flex flex-col p-5">
           <h3 className="text-2xl capitalize">{recipeName}</h3>
           <div className="flex gap-1">
             <p className="font-bold">Cooking Time:</p>
@@ -39,13 +60,13 @@ export const RecipeCard = ({
         {icons &&
           userId &&
           (saved ? (
-            <div className="text-3xl text-pink-500">
+            <button className="text-3xl text-pink-500 p-5">
               <FaHeart onClick={unSaveRecipe} />
-            </div>
+            </button>
           ) : (
             <>
               {" "}
-              <div className="text-3xl hover:text-neutral-400 transitions-all duration-300">
+              <div className="text-3xl hover:text-neutral-400 transitions-all duration-300 p-5">
                 <FaRegHeart onClick={saveRecipe} />
               </div>
             </>
@@ -63,6 +84,7 @@ RecipeCard.propTypes = {
   unSaveRecipe: PropTypes.func,
   saved: PropTypes.bool,
   icons: PropTypes.bool,
+  homeCard: PropTypes.bool,
   userId: PropTypes.string,
   recipeId: PropTypes.string,
 };
