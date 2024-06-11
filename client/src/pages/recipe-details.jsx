@@ -6,7 +6,9 @@ export const RecipeDetails = () => {
   const [recipe, setRecipe] = useState([]);
   const getRecipe = async (recipeId) => {
     try {
-      const res = await axios.get(`http://localhost:3001/recipes/${recipeId}`);
+      const res = await axios.get(
+        `https://recipe-jepg.onrender.com/recipes/${recipeId}`
+      );
       setRecipe(res.data);
     } catch (error) {
       console.error(error);

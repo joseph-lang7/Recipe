@@ -8,10 +8,13 @@ export const onSubmit = async (
   setInvalidCredentials(false);
   try {
     const { username, password } = data;
-    const res = await axios.post("http://localhost:3001/auth/login", {
-      username,
-      password,
-    });
+    const res = await axios.post(
+      "https://recipe-jepg.onrender.com/auth/login",
+      {
+        username,
+        password,
+      }
+    );
     if (res.status === 200) {
       setCookies("access_token", res.data.token);
       window.localStorage.setItem("userID", res.data.userID);

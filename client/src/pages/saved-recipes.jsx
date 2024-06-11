@@ -12,7 +12,7 @@ export const SavedRecipesPage = () => {
   const getSavedRecipes = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3001/recipes/savedRecipes/${userID}`
+        `https://recipe-jepg.onrender.com/recipes/savedRecipes/${userID}`
       );
       setSavedRecipes(res.data.savedRecipes);
       setIsLoading(false);

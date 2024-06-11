@@ -11,7 +11,7 @@ export const HomePage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const getRecipes = async () => {
-    const res = await axios.get("http://localhost:3001/recipes");
+    const res = await axios.get("https://recipe-jepg.onrender.com/recipes");
     setIsLoading(false);
 
     setRecipes(res.data);
@@ -35,7 +35,7 @@ export const HomePage = () => {
     if (userID) {
       try {
         const res = await axios.get(
-          `http://localhost:3001/recipes/savedRecipes/ids/${userID}`
+          `https://recipe-jepg.onrender.com/recipes/savedRecipes/ids/${userID}`
         );
         setSavedRecipes(res.data.savedRecipes);
       } catch (error) {
@@ -51,7 +51,7 @@ export const HomePage = () => {
 
   const saveRecipe = async (recipeID) => {
     try {
-      const res = await axios.put("http://localhost:3001/recipes", {
+      const res = await axios.put("https://recipe-jepg.onrender.com/recipes", {
         recipeID,
         userID,
       });
@@ -63,10 +63,13 @@ export const HomePage = () => {
   };
   const unSaveRecipe = async (recipeID) => {
     try {
-      const res = await axios.put("http://localhost:3001/recipes/delete", {
-        recipeID,
-        userID,
-      });
+      const res = await axios.put(
+        "https://recipe-jepg.onrender.com/recipes/delete",
+        {
+          recipeID,
+          userID,
+        }
+      );
       await getSavedRecipes();
       console.log(res);
     } catch (error) {
