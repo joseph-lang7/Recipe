@@ -9,7 +9,7 @@ export const onSubmit = async (
   try {
     const { username, password } = data;
     const res = await axios.post(
-      "https://recipe-jepg.onrender.com/auth/login",
+      `${import.meta.env.VITE_SERVER_URL}/auth/login`,
       {
         username,
         password,

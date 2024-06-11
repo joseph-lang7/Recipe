@@ -12,7 +12,7 @@ export const SavedRecipesPage = () => {
   const getSavedRecipes = async () => {
     try {
       const res = await axios.get(
-        `https://recipe-jepg.onrender.com/recipes/savedRecipes/${userID}`
+        `${import.meta.env.VITE_SERVER_URL}/recipes/savedRecipes/${userID}`
       );
       setSavedRecipes(res.data.savedRecipes);
       setIsLoading(false);

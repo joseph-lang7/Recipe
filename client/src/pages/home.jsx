@@ -11,7 +11,7 @@ export const HomePage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const getRecipes = async () => {
-    const res = await axios.get("https://recipe-jepg.onrender.com/recipes");
+    const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/recipes`);
     setIsLoading(false);
 
     setRecipes(res.data);
@@ -35,7 +35,9 @@ export const HomePage = () => {
     if (userID) {
       try {
         const res = await axios.get(
-          `https://recipe-jepg.onrender.com/recipes/savedRecipes/ids/${userID}`
+          `${
+            import.meta.env.VITE_SERVER_URL
+          }/recipes/savedRecipes/ids/${userID}`
         );
         setSavedRecipes(res.data.savedRecipes);
       } catch (error) {
@@ -51,10 +53,13 @@ export const HomePage = () => {
 
   const saveRecipe = async (recipeID) => {
     try {
-      const res = await axios.put("https://recipe-jepg.onrender.com/recipes", {
-        recipeID,
-        userID,
-      });
+      const res = await axios.put(
+        `${import.meta.env.VITE_SERVER_URL}/recipes`,
+        {
+          recipeID,
+          userID,
+        }
+      );
       await getSavedRecipes();
       console.log(res);
     } catch (error) {
@@ -64,7 +69,7 @@ export const HomePage = () => {
   const unSaveRecipe = async (recipeID) => {
     try {
       const res = await axios.put(
-        "https://recipe-jepg.onrender.com/recipes/delete",
+        `${import.meta.env.VITE_SERVER_URL}/recipes/delete`,
         {
           recipeID,
           userID,

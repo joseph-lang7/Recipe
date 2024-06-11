@@ -14,7 +14,7 @@ export const CreateRecipePage = () => {
 
   const formSubmission = async (data) => {
     try {
-      await axios.post("https://recipe-jepg.onrender.com/recipes", data);
+      await axios.post(`${import.meta.env.VITE_SERVER_URL}/recipes`, data);
       navigate("/");
     } catch (error) {
       console.error(error);

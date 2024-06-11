@@ -7,7 +7,7 @@ export const RecipeDetails = () => {
   const getRecipe = async (recipeId) => {
     try {
       const res = await axios.get(
-        `https://recipe-jepg.onrender.com/recipes/${recipeId}`
+        `${import.meta.env.VITE_SERVER_URL}/recipes/${recipeId}`
       );
       setRecipe(res.data);
     } catch (error) {

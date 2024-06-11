@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getUsernames = async () => {
-  const res = await axios.get("https://recipe-jepg.onrender.com/auth/users");
+  const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/auth/users`);
   const users = res.data;
   const usernames = users.map((user) => user.username);
   return usernames;
@@ -14,7 +14,7 @@ export const onSubmit = async (data, navigate, setUsernameExists) => {
     if (existingUsernames.includes(username)) {
       setUsernameExists(true);
     } else {
-      axios.post("https://recipe-jepg.onrender.com/auth/register", {
+      axios.post(`${import.meta.env.VITE_SERVER_URL}/auth/register`, {
         username,
         password,
       });
