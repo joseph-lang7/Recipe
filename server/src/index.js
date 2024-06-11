@@ -17,5 +17,5 @@ mongoose.connect(
   `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@recipe.ehsagpg.mongodb.net/recipe?retryWrites=true&w=majority&appName=recipe`
 );
 
-const port = 3001;
+const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Server running on ${port}`));
