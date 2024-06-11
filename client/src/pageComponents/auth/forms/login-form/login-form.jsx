@@ -1,7 +1,7 @@
 import { FormGroup } from "../../../../components/form-group/form-group";
 import { useForm } from "react-hook-form";
 import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { onSubmit } from "./auth-service";
 
@@ -47,6 +47,9 @@ export const LoginForm = () => {
           placeholder="Password"
           errorMessage={errors.password?.message}
         />
+        <Link to="/auth/register" className="underline hover:no-underline">
+          Don&apos;t have an account? Create one
+        </Link>
         <button className="w-full py-3 bg-blue-500 text-white rounded-full hover:bg-black transition-colors duration-500">
           Login
         </button>

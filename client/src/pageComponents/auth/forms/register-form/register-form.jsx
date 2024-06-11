@@ -2,6 +2,7 @@ import { FormGroup } from "../../../../components/form-group/form-group";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { onSubmit, checkUsernameExistence } from "./auth-service";
 export const RegisterForm = () => {
   const [usernameExists, setUsernameExists] = useState(false);
@@ -54,6 +55,9 @@ export const RegisterForm = () => {
           placeholder="Password"
           errorMessage={errors.password?.message}
         />
+        <Link to="/auth/login" className="underline hover:no-underline">
+          Already have an account? Login
+        </Link>
         <button className="w-full py-3 bg-blue-500 text-white rounded-full hover:bg-black transition-colors duration-500">
           Register
         </button>
