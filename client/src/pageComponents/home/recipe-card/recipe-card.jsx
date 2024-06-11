@@ -9,6 +9,8 @@ export const RecipeCard = ({
   saveRecipe,
   unSaveRecipe,
   saved,
+  icons,
+  userId,
 }) => {
   return (
     <div className="w-[300px] sm:w-[400px] h-auto  border shadow-xl cursor-pointer relative">
@@ -26,18 +28,20 @@ export const RecipeCard = ({
             <p>{recipeCookingTime} mins</p>
           </div>
         </div>
-        {saved ? (
-          <div className="text-3xl text-pink-500">
-            <FaHeart onClick={unSaveRecipe} />
-          </div>
-        ) : (
-          <>
-            {" "}
-            <div className="text-3xl ">
-              <FaRegHeart onClick={saveRecipe} />
+        {icons &&
+          userId &&
+          (saved ? (
+            <div className="text-3xl text-pink-500">
+              <FaHeart onClick={unSaveRecipe} />
             </div>
-          </>
-        )}
+          ) : (
+            <>
+              {" "}
+              <div className="text-3xl hover:text-neutral-400 transitions-all duration-300">
+                <FaRegHeart onClick={saveRecipe} />
+              </div>
+            </>
+          ))}
       </div>
     </div>
   );
@@ -50,4 +54,6 @@ RecipeCard.propTypes = {
   saveRecipe: PropTypes.func,
   unSaveRecipe: PropTypes.func,
   saved: PropTypes.bool,
+  icons: PropTypes.bool,
+  userId: PropTypes.string,
 };

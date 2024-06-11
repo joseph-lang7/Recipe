@@ -76,6 +76,8 @@ export const HomePage = () => {
 
   return (
     <div className="w-full px-5 py-10 flex flex-col justify-between items-center gap-10">
+      <h1 className="text-4xl font-bold">Explore Recipes</h1>
+
       <SearchBar handleChange={handleSearchQuery} />
       <div className="w-full flex justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 max-w-[2000px] gap-5">
@@ -91,6 +93,8 @@ export const HomePage = () => {
                 saveRecipe={() => saveRecipe(recipe._id)}
                 unSaveRecipe={() => unSaveRecipe(recipe._id)}
                 saved={savedRecipe(recipe._id)}
+                icons={true}
+                userId={userID}
               />
             ))
           ) : (

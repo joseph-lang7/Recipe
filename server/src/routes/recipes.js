@@ -58,5 +58,16 @@ router.get("/savedRecipes/ids/:userID", async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+router.get("/savedRecipes/:userID", async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.userID);
+    const savedRecipes = await RecipeModel.find({
+      _id: { $in: user.savedRecipes },
+    });
+    res.status(200).json({ savedRecipes });
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 
 export { router as recipesRouter };

@@ -5,7 +5,7 @@ export const SearchBar = ({ handleChange }) => {
       <input
         type="text"
         name="search"
-        placeholder="Enter a recipe name"
+        placeholder="Find a recipe"
         id="search"
         onChange={handleChange}
         className="pl-5 py-3 border-[3px] rounded-full focus:outline-none focus:border-blue-500 w-3/4 xl:w-1/2 border-black"
