@@ -23,4 +23,40 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/", async (req, res) => {
+  try {
+    const recipe = await RecipeModel.findById(req.body.recipeID);
+    const user = await UserModel.findById(req.body.userID);
+    user.savedRecipes.push(recipe);
+    await user.save();
+    res.json({ savedRecipes: user.savedRecipes });
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+router.put("/delete", async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.body.userID);
+    const savedRecipes = user.savedRecipes;
+    const index = savedRecipes.indexOf(req.body.recipeID);
+    if (index !== -1) {
+      savedRecipes.splice(index, 1);
+    }
+    await user.save();
+    res.json({ savedRecipes });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+router.get("/savedRecipes/ids/:userID", async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.userID);
+    res.status(200).json({ savedRecipes: user?.savedRecipes });
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 export { router as recipesRouter };
