@@ -6,6 +6,7 @@ import {
   HomePage,
   SavedRecipesPage,
   Register,
+  RecipeDetails,
 } from "./pages";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 
@@ -19,6 +20,7 @@ function App() {
       </Route>
       <Route path="/auth/register" element={<Register />} />
       <Route path="/auth/login" element={<Login />} />
+      <Route path="/recipes/:recipeId" element={<RecipeDetails />} />
     </Routes>
   );
 }

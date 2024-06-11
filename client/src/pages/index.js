@@ -3,3 +3,4 @@ export * from "./home";
 export * from "./saved-recipes";
 export * from "./login";
 export * from "./register";
+export * from "./recipe-details";

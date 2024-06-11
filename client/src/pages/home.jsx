@@ -32,14 +32,17 @@ export const HomePage = () => {
   };
 
   const getSavedRecipes = async () => {
-    try {
-      const res = await axios.get(
-        `http://localhost:3001/recipes/savedRecipes/ids/${userID}`
-      );
-      setSavedRecipes(res.data.savedRecipes);
-    } catch (error) {
-      console.error(error);
+    if (userID) {
+      try {
+        const res = await axios.get(
+          `http://localhost:3001/recipes/savedRecipes/ids/${userID}`
+        );
+        setSavedRecipes(res.data.savedRecipes);
+      } catch (error) {
+        console.error(error);
+      }
     }
+    return;
   };
   useEffect(() => {
     getRecipes();
@@ -76,7 +79,7 @@ export const HomePage = () => {
 
   return (
     <div className="w-full px-5 py-10 flex flex-col justify-between items-center gap-10">
-      <h1 className="text-4xl font-bold">Explore Recipes</h1>
+      <h1 className="text-3xl md:text-4xl font-bold">Explore Recipes</h1>
 
       <SearchBar handleChange={handleSearchQuery} />
       <div className="w-full flex justify-center">
@@ -95,6 +98,7 @@ export const HomePage = () => {
                 saved={savedRecipe(recipe._id)}
                 icons={true}
                 userId={userID}
+                recipeId={recipe._id}
               />
             ))
           ) : (

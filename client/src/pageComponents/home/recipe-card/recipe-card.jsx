@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
-
+import { useNavigate } from "react-router-dom";
 export const RecipeCard = ({
   recipeImage,
   recipeName,
@@ -11,9 +11,17 @@ export const RecipeCard = ({
   saved,
   icons,
   userId,
+  recipeId,
 }) => {
+  const navigate = useNavigate();
+  const handleClick = async (recipeId) => {
+    navigate(`recipes/${recipeId}`);
+  };
   return (
-    <div className="w-[300px] sm:w-[400px] h-auto  border shadow-xl cursor-pointer relative">
+    <div
+      onClick={() => handleClick(recipeId)}
+      className="w-full h-auto  border shadow-xl cursor-pointer relative hover:shadow-2xl hover:scale-105 transition-all duration-500 "
+    >
       <div className="w-full h-[300px]">
         <img
           src={recipeImage ? recipeImage : "/no-image.png"}
@@ -56,4 +64,5 @@ RecipeCard.propTypes = {
   saved: PropTypes.bool,
   icons: PropTypes.bool,
   userId: PropTypes.string,
+  recipeId: PropTypes.string,
 };
