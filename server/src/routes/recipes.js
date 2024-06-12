@@ -24,8 +24,12 @@ router.get("/:recipeID", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const recipe = new RecipeModel(req.body);
+  const userId = recipe.recipeOwner;
+  const owner = await UserModel.findById(userId);
   try {
     const response = await recipe.save();
+    owner.createdRecipes.push(recipe);
+    await owner.save();
     res.status(201).json(response);
   } catch (error) {
     res.status(500).json({ message: "Internal server error" }, error);
@@ -77,5 +81,31 @@ router.get("/savedRecipes/:userID", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+router.get("/myRecipes/:userID", async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.userID);
+    const createdRecipes = await RecipeModel.find({
+      _id: { $in: user.createdRecipes },
+    });
+    res.status(200).json({ createdRecipes });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// router.get("/myRecipes/:userID", async (req, res) => {
+//   try {
+//     const user = await UserModel.findById(req.params.userID);
+//     const createdRecipe = await RecipeModel.find({
+//       _id: {$in: }
+//     })
+//     const createdRecipes = await RecipeModel.find({
+//       _id: { $in: user.savedRecipes },
+//     });
+//     res.status(200).json({ createdRecipes });
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
 export { router as recipesRouter };

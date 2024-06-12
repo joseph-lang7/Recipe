@@ -15,11 +15,10 @@ export const RecipeCard = ({
   icons,
   userId,
   recipeId,
-  homeCard,
 }) => {
   const navigate = useNavigate();
-  const handleClick = async (recipeId) => {
-    navigate(`recipes/${recipeId}`);
+  const handleClick = () => {
+    navigate(`/recipes/${recipeId}`);
   };
   const [isHovered, setIsHovered] = useState(false);
   return (
@@ -35,21 +34,19 @@ export const RecipeCard = ({
         />
       </div>
       <div className="flex items-center justify-between relative">
-        {homeCard && (
-          <button
-            onClick={() => handleClick(recipeId)}
-            className={`${
-              isHovered
-                ? "opacity-100 translate-y-2"
-                : "opacity-0 translate-y-[-10px]"
-            } absolute top-0 w-full flex justify-center hover:text-blue-500 transition-all duration-500 items-center`}
-          >
-            <p>Learn More</p>
-            <div className="text-2xl">
-              <IoIosArrowRoundForward />
-            </div>
-          </button>
-        )}
+        <button
+          onClick={handleClick}
+          className={`${
+            isHovered
+              ? "opacity-100 translate-y-2"
+              : "opacity-0 translate-y-[-10px]"
+          } absolute top-0 w-full flex justify-center hover:text-blue-500 transition-all duration-500 items-center`}
+        >
+          <p>Learn More</p>
+          <div className="text-2xl">
+            <IoIosArrowRoundForward />
+          </div>
+        </button>
         <div className="flex flex-col p-5 mt-3 text-xs sm:text-base gap-2">
           <h3 className="text-xl md:text-2xl capitalize">{recipeName}</h3>
           <div className="flex gap-1">
@@ -84,7 +81,6 @@ RecipeCard.propTypes = {
   unSaveRecipe: PropTypes.func,
   saved: PropTypes.bool,
   icons: PropTypes.bool,
-  homeCard: PropTypes.bool,
   userId: PropTypes.string,
   recipeId: PropTypes.string,
 };
