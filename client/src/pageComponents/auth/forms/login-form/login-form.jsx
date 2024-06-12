@@ -47,6 +47,20 @@ export const LoginForm = () => {
           placeholder="Password"
           errorMessage={errors.password?.message}
         />
+        <div>
+          <h3>
+            Here are login credentials for testing the site, or feel free to
+            make an account!
+          </h3>
+          <div className="flex gap-2">
+            <p>
+              username: <span className="text-blue-500">admin</span>
+            </p>
+            <p>
+              password: <span className="text-blue-500">password</span>
+            </p>
+          </div>
+        </div>
         <Link to="/auth/register" className="underline hover:no-underline">
           Don&apos;t have an account? Create one
         </Link>
