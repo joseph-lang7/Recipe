@@ -20,7 +20,7 @@ export const Navbar = () => {
   return (
     <div className="w-full bg-black h-[100px] text-white flex justify-center items-center">
       <div className="flex w-full max-w-[2000px] justify-between px-5 md:px-0 md:justify-around">
-        <div className="flex items-center">Logo</div>
+        <div className="flex items-center text-2xl md:text-3xl">RECIPE</div>
         <ul className="hidden md:flex gap-7 items-center">
           {navLinks.map((navLink) => (
             <li
