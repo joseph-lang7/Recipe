@@ -50,8 +50,8 @@ export const RecipeCard = ({
             </div>
           </button>
         )}
-        <div className={`flex flex-col p-5 mt-3`}>
-          <h3 className="text-2xl capitalize">{recipeName}</h3>
+        <div className="flex flex-col p-5 mt-3 text-xs sm:text-base gap-2">
+          <h3 className="text-xl md:text-2xl capitalize">{recipeName}</h3>
           <div className="flex gap-1">
             <p className="font-bold">Cooking Time:</p>
             <p>{recipeCookingTime} mins</p>
@@ -60,13 +60,13 @@ export const RecipeCard = ({
         {icons &&
           userId &&
           (saved ? (
-            <button className="text-3xl text-pink-500 p-5">
+            <button className="text-2xl md:text-3xl text-pink-500 p-5">
               <FaHeart onClick={unSaveRecipe} />
             </button>
           ) : (
             <>
               {" "}
-              <div className="text-3xl hover:text-neutral-400 transitions-all duration-300 p-5">
+              <div className="text-2xl md:text-3xl hover:text-neutral-400 transitions-all duration-300 p-5">
                 <FaRegHeart onClick={saveRecipe} />
               </div>
             </>
