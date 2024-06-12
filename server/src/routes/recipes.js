@@ -93,19 +93,4 @@ router.get("/myRecipes/:userID", async (req, res) => {
   }
 });
 
-// router.get("/myRecipes/:userID", async (req, res) => {
-//   try {
-//     const user = await UserModel.findById(req.params.userID);
-//     const createdRecipe = await RecipeModel.find({
-//       _id: {$in: }
-//     })
-//     const createdRecipes = await RecipeModel.find({
-//       _id: { $in: user.savedRecipes },
-//     });
-//     res.status(200).json({ createdRecipes });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
-
 export { router as recipesRouter };

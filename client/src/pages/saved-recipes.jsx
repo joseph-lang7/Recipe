@@ -3,6 +3,7 @@ import axios from "axios";
 import { RecipeCard } from "../components/recipe-card/recipe-card";
 import { SearchBar } from "../pageComponents/home/search-bar/search-bar";
 import { useGetUserId } from "../hooks/useGetUserId";
+import { CardLoadingSkeleton } from "../components/card-loading-skeleton/card-loading-skeleton";
 export const SavedRecipesPage = () => {
   const userID = useGetUserId();
   const [savedRecipes, setSavedRecipes] = useState([]);
@@ -46,7 +47,9 @@ export const SavedRecipesPage = () => {
       <div className="w-full flex justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 max-w-[2000px] gap-5">
           {isLoading ? (
-            <></>
+            savedRecipes.map((recipe, index) => (
+              <CardLoadingSkeleton key={index} />
+            ))
           ) : filteredRecipes && filteredRecipes.length > 0 ? (
             filteredRecipes.map((recipe) => (
               <RecipeCard

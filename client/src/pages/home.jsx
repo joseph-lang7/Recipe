@@ -3,6 +3,8 @@ import axios from "axios";
 import { RecipeCard } from "../components/recipe-card/recipe-card";
 import { SearchBar } from "../pageComponents/home/search-bar/search-bar";
 import { useGetUserId } from "../hooks/useGetUserId";
+import { CardLoadingSkeleton } from "../components/card-loading-skeleton/card-loading-skeleton";
+
 export const HomePage = () => {
   const userID = useGetUserId();
   const [recipes, setRecipes] = useState([]);
@@ -80,12 +82,11 @@ export const HomePage = () => {
   return (
     <div className="w-full px-5 py-10 flex flex-col justify-between items-center gap-10">
       <h1 className="text-3xl md:text-4xl font-bold">Explore Recipes</h1>
-
       <SearchBar handleChange={handleSearchQuery} />
       <div className="w-full flex justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 max-w-[2000px] gap-5">
           {isLoading ? (
-            <></>
+            recipes.map((recipe, index) => <CardLoadingSkeleton key={index} />)
           ) : filteredRecipes && filteredRecipes.length > 0 ? (
             filteredRecipes.map((recipe) => (
               <RecipeCard

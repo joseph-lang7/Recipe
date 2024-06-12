@@ -18,7 +18,7 @@ function App() {
       <Route element={<ProtectedRoutes />}>
         <Route path="/create-recipe" element={<CreateRecipePage />} />
         <Route path="/saved-recipes" element={<SavedRecipesPage />} />
-        <Route path="/my-recipes/:userId" element={<MyRecipes />} />
+        <Route path="/my-recipes" element={<MyRecipes />} />
       </Route>
       <Route path="/auth/register" element={<Register />} />
       <Route path="/auth/login" element={<Login />} />

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useGetUserId } from "../hooks/useGetUserId";
 import { RecipeCard } from "../components/recipe-card/recipe-card";
 import { SearchBar } from "../pageComponents/home/search-bar/search-bar";
+import { CardLoadingSkeleton } from "../components/card-loading-skeleton/card-loading-skeleton";
 import { Link } from "react-router-dom";
 export const MyRecipes = () => {
   const userId = useGetUserId();
@@ -10,7 +11,7 @@ export const MyRecipes = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState("");
 
-  const getUserCreatedRecipes = async (userId) => {
+  const getUserCreatedRecipes = async () => {
     try {
       const res = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/recipes/myRecipes/${userId}`
@@ -21,9 +22,10 @@ export const MyRecipes = () => {
       console.error(error);
     }
   };
+
   useEffect(() => {
-    getUserCreatedRecipes(userId);
-  }, [userId]);
+    getUserCreatedRecipes();
+  }, []);
 
   const getFilteredRecipes = () => {
     if (!query) {
@@ -45,7 +47,7 @@ export const MyRecipes = () => {
       <div className="w-full flex justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 max-w-[2000px] gap-5">
           {isLoading ? (
-            <></>
+            recipes.map((recipe, index) => <CardLoadingSkeleton key={index} />)
           ) : filteredRecipes && filteredRecipes.length > 0 ? (
             filteredRecipes.map((recipe) => (
               <RecipeCard

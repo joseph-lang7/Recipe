@@ -25,7 +25,7 @@ export const RecipeCard = ({
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="w-full h-auto  border shadow-xl cursor-pointer relative hover:shadow-2xl hover:scale-105 transition-all duration-500 "
+      className="max-w-full max-h-full w-[400px] h-[450px] xl:w-[450px] border shadow-xl cursor-pointer relative hover:shadow-2xl hover:scale-105 transition-all duration-500 "
     >
       <div className="w-full h-[300px]">
         <img
