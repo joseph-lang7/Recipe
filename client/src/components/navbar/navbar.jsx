@@ -35,7 +35,7 @@ export const Navbar = () => {
         />
         <div className="flex gap-2">
           <div
-            className={`${isOpen ? "text-black" : "text-white"} md:hidden z-50`}
+            className={`${isOpen ? "text-black" : "text-white"} lg:hidden z-50`}
           >
             <Hamburger toggled={isOpen} toggle={setOpen} />
           </div>
