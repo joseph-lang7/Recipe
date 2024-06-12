@@ -2,8 +2,10 @@ import { useCookies } from "react-cookie";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Hamburger from "hamburger-react";
+import { useGetUserId } from "../../hooks/useGetUserId";
 import { MobileNav, Logo, DesktopNav, AuthLinks } from "./";
 export const Navbar = () => {
+  const userId = useGetUserId();
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setOpen] = useState(false);
@@ -12,6 +14,7 @@ export const Navbar = () => {
     { href: "/", title: "Home" },
     { href: "/create-recipe", title: "Create Recipe" },
     { href: "/saved-recipes", title: "Saved Recipes" },
+    { href: `/my-recipes/${userId}`, title: "My Recipes" },
   ];
 
   const logout = () => {

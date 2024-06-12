@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { RecipeCard } from "../pageComponents/home/recipe-card/recipe-card";
+import { RecipeCard } from "../components/recipe-card/recipe-card";
 import { SearchBar } from "../pageComponents/home/search-bar/search-bar";
 import { useGetUserId } from "../hooks/useGetUserId";
 export const HomePage = () => {
@@ -99,7 +99,6 @@ export const HomePage = () => {
                 icons={true}
                 userId={userID}
                 recipeId={recipe._id}
-                homeCard={true}
               />
             ))
           ) : (
