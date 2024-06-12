@@ -53,30 +53,22 @@ export const HomePage = () => {
 
   const saveRecipe = async (recipeID) => {
     try {
-      const res = await axios.put(
-        `${import.meta.env.VITE_SERVER_URL}/recipes`,
-        {
-          recipeID,
-          userID,
-        }
-      );
+      await axios.put(`${import.meta.env.VITE_SERVER_URL}/recipes`, {
+        recipeID,
+        userID,
+      });
       await getSavedRecipes();
-      console.log(res);
     } catch (error) {
       console.error(error);
     }
   };
   const unSaveRecipe = async (recipeID) => {
     try {
-      const res = await axios.put(
-        `${import.meta.env.VITE_SERVER_URL}/recipes/delete`,
-        {
-          recipeID,
-          userID,
-        }
-      );
+      await axios.put(`${import.meta.env.VITE_SERVER_URL}/recipes/delete`, {
+        recipeID,
+        userID,
+      });
       await getSavedRecipes();
-      console.log(res);
     } catch (error) {
       console.error(error);
     }

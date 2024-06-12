@@ -16,7 +16,6 @@ export const SavedRecipesPage = () => {
       );
       setSavedRecipes(res.data.savedRecipes);
       setIsLoading(false);
-      console.log(savedRecipes);
     } catch (error) {
       console.error(error);
     }

@@ -14,7 +14,6 @@ export const RecipeDetails = () => {
       console.error(error);
     }
   };
-  console.log(recipe);
   useEffect(() => {
     getRecipe(recipeId);
   }, [recipeId]);
