@@ -57,7 +57,7 @@ export const MyRecipes = () => {
                 recipeId={recipe._id}
               />
             ))
-          ) : (
+          ) : recipes.length === 0 ? (
             <div className="flex flex-col gap-2">
               <p>You haven&apos;t created any recipes</p>
               <Link
@@ -67,6 +67,8 @@ export const MyRecipes = () => {
                 Create one?
               </Link>
             </div>
+          ) : (
+            <p>No results found</p>
           )}
         </div>
       </div>
