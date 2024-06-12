@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://recipe-jl.netlify.app",
+    origin: ["https://recipe-jl.netlify.app", "http://localhost:5173"],
   })
 );
 

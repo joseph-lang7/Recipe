@@ -44,13 +44,13 @@ export const RecipeCard = ({
                 : "opacity-0 translate-y-[-10px]"
             } absolute top-0 w-full flex justify-center hover:text-blue-500 transition-all duration-500 items-center`}
           >
-            <p> Learn More</p>
+            <p>Learn More</p>
             <div className="text-2xl">
               <IoIosArrowRoundForward />
             </div>
           </button>
         )}
-        <div className="flex flex-col p-5">
+        <div className={`flex flex-col p-5 mt-3`}>
           <h3 className="text-2xl capitalize">{recipeName}</h3>
           <div className="flex gap-1">
             <p className="font-bold">Cooking Time:</p>
