@@ -13,11 +13,6 @@ app.use(
     origin: "https://recipe-jl.netlify.app",
   })
 );
-app.use(
-  cors({
-    origin: "url",
-  })
-);
 
 app.use("/auth", userRouter);
 app.use("/recipes", recipesRouter);
