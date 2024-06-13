@@ -4,8 +4,8 @@
 <h1 align="center" style="color:white;">
 Recipe
 </h1>
-<img src="public/recipe.png"
-     alt="Hotel"
+<img src="client/public/recipe.png"
+     alt="Recipe"
      style="float: left; margin-right: 10px;" />
 </div>
 <p style="text-align:center; color:white; margin-top:350px;" >
