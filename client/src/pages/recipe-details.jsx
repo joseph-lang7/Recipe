@@ -1,12 +1,14 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 export const RecipeDetails = () => {
-  let { recipeId } = useParams();
+  const { recipeId } = useParams();
+  const navigate = useNavigate();
   const [recipe, setRecipe] = useState([]);
   const [isLoading, setLoading] = useState(true);
+
   const getRecipe = async (recipeId) => {
     try {
       const res = await axios.get(
@@ -22,8 +24,15 @@ export const RecipeDetails = () => {
   useEffect(() => {
     getRecipe(recipeId);
   }, [recipeId]);
+
   return (
     <div className="w-screen flex justify-center">
+      <button
+        onClick={() => navigate(-1)}
+        className="flex self-start mt-10 px-5 py-2 bg-blue-500 rounded-full text-white hover:bg-black transition-colors duration-500"
+      >
+        Go Back
+      </button>
       {isLoading ? (
         <div className="w-[450px] h-[770px] lg:w-[750px] lg:h-[850px] py-10 mt-10 mx-5">
           <Skeleton height="100%" width="100%" />
