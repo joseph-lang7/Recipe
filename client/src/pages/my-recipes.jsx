@@ -5,7 +5,7 @@ import { RecipeCard } from "../components/recipe-card/recipe-card";
 import { SearchBar } from "../pageComponents/home/search-bar/search-bar";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-
+import { getFilteredRecipes } from "../functions/get-filtered-recipes";
 import { Link } from "react-router-dom";
 export const MyRecipes = () => {
   const userId = useGetUserId();
@@ -30,15 +30,7 @@ export const MyRecipes = () => {
     getUserCreatedRecipes();
   }, []);
 
-  const getFilteredRecipes = () => {
-    if (!query) {
-      return recipes;
-    }
-    return recipes.filter((recipe) =>
-      recipe.name.toLowerCase().includes(query.toLowerCase())
-    );
-  };
-  const filteredRecipes = getFilteredRecipes();
+  const filteredRecipes = getFilteredRecipes(query, recipes);
   const handleSearchQuery = (event) => {
     setQuery(event.target.value);
   };

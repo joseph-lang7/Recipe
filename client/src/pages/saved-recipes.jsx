@@ -5,6 +5,7 @@ import { SearchBar } from "../pageComponents/home/search-bar/search-bar";
 import { useGetUserId } from "../hooks/useGetUserId";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { getFilteredRecipes } from "../functions/get-filtered-recipes";
 export const SavedRecipesPage = () => {
   const userID = useGetUserId();
   const [savedRecipes, setSavedRecipes] = useState([]);
@@ -24,15 +25,7 @@ export const SavedRecipesPage = () => {
     }
   };
 
-  const getFilteredRecipes = () => {
-    if (!query) {
-      return savedRecipes;
-    }
-    return savedRecipes.filter((recipe) =>
-      recipe.name.toLowerCase().includes(query.toLowerCase())
-    );
-  };
-  const filteredRecipes = getFilteredRecipes();
+  const filteredRecipes = getFilteredRecipes(query, savedRecipes);
 
   const handleSearchQuery = (event) => {
     setQuery(event.target.value);
