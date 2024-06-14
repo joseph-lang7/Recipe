@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { DetailCardLoadingSkeleton } from "../components/detail-card-loading-skeleton/detail-card-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 export const RecipeDetails = () => {
   let { recipeId } = useParams();
   const [recipe, setRecipe] = useState([]);
@@ -15,6 +16,7 @@ export const RecipeDetails = () => {
       setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -23,7 +25,9 @@ export const RecipeDetails = () => {
   return (
     <div className="w-screen flex justify-center">
       {isLoading ? (
-        <DetailCardLoadingSkeleton />
+        <div className="w-[450px] h-[770px] lg:w-[750px] lg:h-[850px] py-10 mt-10 mx-5">
+          <Skeleton height="100%" width="100%" />
+        </div>
       ) : (
         <div className="border shadow-lg max-w-[800px] py-10 my-10 mx-5 relative">
           <div className="absolute right-[5%] top-[3%] text-lg font-bold">{`${recipe.cookingTime} min`}</div>
